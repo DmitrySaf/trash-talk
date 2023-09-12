@@ -3,18 +3,15 @@ import { DefaultTheme } from 'styled-components'
 export const theme: DefaultTheme = {
   colors: {
     primary: '#0465C6',
-    white: '#FCFCFC',
-    black: '#0E0E0E',
-    gray: '#A0A0A0',
-    green: '#12B76A',
-    red: '#A62E2E',
-    yellow: '#FFDD32',
-    blue: '#69B2FC'
+    white: '#FFFFFF',
+    black: '#000000',
+    grayLight: '#E9E9E9',
+    grayDark: '#646464'
   },
   fontSizes: {
     xs: '10px',
     s: '12px',
-    m: '14px',
+    m: '16px',
     l: '20px',
     xl: '24px',
     xxl: '32px',
@@ -24,7 +21,7 @@ export const theme: DefaultTheme = {
     main: '130%'
   },
   fontFamilies: {
-    main: '"Inter", sans-serif'
+    main: '"SF Pro Text", sans-serif'
   },
   fontWeights: {
     light: '300',
