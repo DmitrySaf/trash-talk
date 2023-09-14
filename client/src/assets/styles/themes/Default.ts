@@ -13,9 +13,7 @@ export const theme: DefaultTheme = {
     s: '12px',
     m: '16px',
     l: '20px',
-    xl: '24px',
-    xxl: '32px',
-    xxxl: '40px'
+    xl: '48px'
   },
   lineHeights: {
     main: '130%'

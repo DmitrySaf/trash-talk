@@ -1,4 +1,5 @@
 import { Sidebar } from '@/components/Sidebar'
+import { Windows } from '@/components/Windows'
 
 import * as Styled from './styled'
 
@@ -8,6 +9,7 @@ export function App() {
   return (
     <Styled.AppContainer>
       <Sidebar />
+      <Windows />
     </Styled.AppContainer>
   )
 }
