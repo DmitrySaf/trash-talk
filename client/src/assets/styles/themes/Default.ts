@@ -2,11 +2,8 @@ import { DefaultTheme } from 'styled-components'
 
 export const theme: DefaultTheme = {
   colors: {
-    primary: '#0465C6',
     white: '#FFFFFF',
-    black: '#000000',
-    grayLight: '#E9E9E9',
-    grayDark: '#646464'
+    black: '#000000'
   },
   fontSizes: {
     xs: '10px',
@@ -22,11 +19,11 @@ export const theme: DefaultTheme = {
     main: '"SF Pro Text", sans-serif'
   },
   fontWeights: {
-    light: '300',
-    regular: '400',
-    medium: '500',
-    semiBold: '600',
-    bold: '700'
+    light: 300,
+    regular: 400,
+    medium: 500,
+    semiBold: 600,
+    bold: 700
   },
   transitionDurations: {
     main: '300ms'

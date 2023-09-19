@@ -1,5 +1,4 @@
 import styled from 'styled-components'
-import InputMask from 'react-input-mask'
 
 export const Registration = styled.div`
   width: 100%;
@@ -18,6 +17,7 @@ export const BackgroundBlur = styled.div`
   left: 0;
   width: 100%;
   height: 100%;
+  background: rgba(0, 0, 0, 0.3);
   backdrop-filter: blur(8px);
   z-index: 1;
 `
@@ -36,8 +36,9 @@ export const Form = styled.form`
 export const Header = styled.h2`
   position: relative;
   font-size: ${({ theme }) => theme.fontSizes.xl};
-  line-height: 130%;
-  color: white;
+  line-height: ${({ theme }) => theme.lineHeights.main};
+  color: ${({ theme }) => theme.colors.white};
+  font-weight: ${({ theme }) => theme.fontWeights.semiBold};
 
   &::after {
     content: 'ebem kozlov';
@@ -45,61 +46,10 @@ export const Header = styled.h2`
     bottom: 0;
     right: 0;
     font-size: ${({ theme }) => theme.fontSizes.xs};
-    line-height: 130%;
-    color: white;
+    font-weight: ${({ theme }) => theme.fontWeights.medium};
+    line-height: ${({ theme }) => theme.lineHeights.main};
+    color: ${({ theme }) => theme.colors.white};
   }
-`
-
-export const InputWrapper = styled.div`
-  width: 100%;
-  height: 100%;
-`
-
-export const InputLabel = styled.label`
-  width: 100%;
-  height: 100%;
-  color: white;
-  font-weight: 400;
-`
-
-export const InputGrid = styled.div`
-  display: grid;
-  grid-template-columns: 0fr 1fr;
-  border: 1px solid white;
-  border-radius: 16px;
-  margin: 4px 0;
-`
-
-export const InputCountryNumber = styled.div`
-  padding: 16px;
-  color: white;
-  font-size: ${({ theme }) => theme.fontSizes.l};
-  font-weight: 400;
-  border-right: 1px solid white;
-`
-
-export const Input = styled(InputMask)`
-  padding: 16px;
-  color: white;
-  font-size: ${({ theme }) => theme.fontSizes.l};
-  font-weight: 400;
-  border: none;
-  background-color: transparent;
-
-  &::placeholder {
-    color: white;
-    font-size: ${({ theme }) => theme.fontSizes.l};
-  }
-
-  &:focus {
-    outline: none;
-  }
-`
-
-export const InputDescription = styled.p`
-  font-size: 16px;
-  font-weight: 400;
-  color: white;
 `
 
 export const Button = styled.button`
@@ -113,9 +63,9 @@ export const Button = styled.button`
   & > span {
     position: relative;
     z-index: 100;
-    font-size: 17px;
+    font-size: ${({ theme }) => theme.fontSizes.m};
     font-weight: 500;
-    color: white;
+    color: ${({ theme }) => theme.colors.white};
   }
 
   &::before {
@@ -130,5 +80,12 @@ export const Button = styled.button`
     overflow: hidden;
     border-radius: 16px;
     z-index: 99;
+  }
+
+  &:hover,
+  &:focus {
+    &::before {
+      outline: 1px solid ${({ theme }) => theme.colors.white};
+    }
   }
 `

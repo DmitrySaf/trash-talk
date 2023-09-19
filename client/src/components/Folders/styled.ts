@@ -20,5 +20,5 @@ export const FolderIcon = styled.img`
 `
 
 export const FolderText = styled.p`
-  color: black;
+  color: ${({ theme }) => theme.colors.black};
 `

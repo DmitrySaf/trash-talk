@@ -5,7 +5,7 @@ export const SettingsButton = styled.button`
   height: 54px;
   display: grid;
   place-items: center;
-  background-color: black;
+  background-color: ${({ theme }) => theme.colors.black};
   border: none;
   border-radius: 50%;
   cursor: pointer;

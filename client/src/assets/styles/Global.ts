@@ -18,14 +18,18 @@ body {
   margin: 0;
   height: 100%;
   font-family: ${theme.fontFamilies.main};
-  font-weight: bold;
+  font-weight: ${theme.fontWeights.regular};
   font-size: ${theme.fontSizes.m};
+  line-height: ${theme.lineHeights.main};
+}
+
+h1 {
+  font-size: ${theme.fontSizes.xl};
   line-height: ${theme.lineHeights.main};
 }
 
 a {
   text-decoration: none;
-  color: ${theme.colors.blue};
   cursor: pointer;
 }
 `
