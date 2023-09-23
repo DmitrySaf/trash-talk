@@ -1,42 +1,35 @@
-import { useState, type ChangeEvent } from 'react'
+import { forwardRef } from 'react'
+import { type UseFormRegister } from 'react-hook-form'
 
 import * as Styled from './styled'
 
 interface Props {
   label: string
   countryNumber: string
-  error?: string
-  onChange: (value: string) => void
+  error: string | undefined
 }
 
-export function MaskedInput({ label, countryNumber, error, onChange }: Props) {
-  const [value, setValue] = useState('')
-
-  function handleChange(event: ChangeEvent<HTMLInputElement>): void {
-    const { value: newValue } = event.target
-
-    setValue(newValue)
-    onChange(newValue)
+export const MaskedInput = forwardRef<HTMLElement, Props & ReturnType<UseFormRegister<any>>>(
+  function MaskedInput({ onChange, onBlur, name, label, countryNumber, error }, ref) {
+    return (
+      <Styled.InputWrapper>
+        <label>
+          <Styled.InputLabel>{label}</Styled.InputLabel>
+          <Styled.InputGrid error={!!error}>
+            <Styled.InputCountryNumber error={!!error}>{countryNumber}</Styled.InputCountryNumber>
+            <Styled.Input
+              name={name}
+              ref={ref}
+              onChange={onChange}
+              onBlur={onBlur}
+              mask="999 999 99 99"
+              maskChar="&ndash;"
+              alwaysShowMask
+            />
+          </Styled.InputGrid>
+        </label>
+        {<Styled.InputDescription>{error}</Styled.InputDescription>}
+      </Styled.InputWrapper>
+    )
   }
-
-  return (
-    <Styled.InputWrapper>
-      <label>
-        <Styled.InputLabel>{label}</Styled.InputLabel>
-        <Styled.InputGrid error={Boolean(error)}>
-          <Styled.InputCountryNumber error={Boolean(error)}>
-            {countryNumber}
-          </Styled.InputCountryNumber>
-          <Styled.Input
-            value={value}
-            onChange={handleChange}
-            mask="999 999 99 99"
-            maskChar="&ndash;"
-            alwaysShowMask
-          />
-        </Styled.InputGrid>
-      </label>
-      {error !== undefined && <Styled.InputDescription>{error}</Styled.InputDescription>}
-    </Styled.InputWrapper>
-  )
-}
+)

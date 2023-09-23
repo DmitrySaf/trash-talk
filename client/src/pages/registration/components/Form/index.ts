@@ -1,1 +1,1 @@
-export { Form } from './Form'
+export { Form, type FormState } from './Form'
