@@ -5,7 +5,12 @@ declare module 'styled-components' {
   export interface DefaultTheme {
     colors: {
       white: string
+      grey: string
       black: string
+      error: string
+      warning: string
+      success: string
+      blue: string
     }
     fontSizes: {
       xs: string

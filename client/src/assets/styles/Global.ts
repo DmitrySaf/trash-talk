@@ -21,6 +21,7 @@ body {
   font-weight: ${theme.fontWeights.regular};
   font-size: ${theme.fontSizes.m};
   line-height: ${theme.lineHeights.main};
+  color: ${theme.colors.white};
 }
 
 h1 {

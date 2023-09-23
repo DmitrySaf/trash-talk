@@ -1,5 +1,6 @@
 import { useUsersActions } from '@/features/users'
 import { Form, type FormState } from '../../components/Form'
+import { BackgroundImageWithBlur } from '@/components/BackgroundImageWithBlur'
 import { formatPhoneNumberForPayload } from '@/features/users'
 import backgroundImage from './assets/background.jpeg'
 import * as Styled from './styled'
@@ -15,10 +16,11 @@ export function Registration() {
   }
 
   return (
-    <Styled.Registration>
-      <Styled.Background src={backgroundImage} />
-      <Styled.BackgroundBlur />
-      <Form loading={creatingUser} submit={handleSubmit} />
-    </Styled.Registration>
+    <>
+      <BackgroundImageWithBlur image={backgroundImage} />
+      <Styled.Registration>
+        <Form loading={creatingUser} submit={handleSubmit} />
+      </Styled.Registration>
+    </>
   )
 }
