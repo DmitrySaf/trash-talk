@@ -1,7 +1,6 @@
 import { useUsersActions } from '@/features/users'
 import { Form, type FormState } from '../../components/Form'
 import { BackgroundImageWithBlur } from '@/components/BackgroundImageWithBlur'
-import { formatPhoneNumberForPayload } from '@/features/users'
 import backgroundImage from './assets/background.jpeg'
 import * as Styled from './styled'
 
@@ -9,8 +8,8 @@ export function Registration() {
   const { creatingUser, createUser } = useUsersActions()
 
   async function handleSubmit(form: FormState) {
-    const formattedPhoneNumber = formatPhoneNumberForPayload(form.phoneNumber)
-    const payload = { phoneNumber: formattedPhoneNumber }
+    const { username } = form
+    const payload = { username }
 
     await createUser(payload)
   }

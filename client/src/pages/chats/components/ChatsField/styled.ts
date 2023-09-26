@@ -19,49 +19,36 @@ export const Title = styled.h4`
   color: ${({ theme }) => theme.colors.white};
 `
 
-export const Chat = styled.div`
+export const Empty = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  flex-grow: 1;
+  justify-content: center;
+`
+
+export const EmptyText = styled.p`
+  font-size: ${({ theme }) => theme.fontSizes.l};
+  line-height: ${({ theme }) => theme.lineHeights.main};
+  color: ${({ theme }) => theme.colors.white};
+  text-align: center;
+`
+
+export const EmptyButton = styled.button`
   ${backgroundBlur}
 
-  padding: 8px;
-  width: 100%;
+  font-size: ${({ theme }) => theme.fontSizes.l};
+  line-height: ${({ theme }) => theme.lineHeights.main};
+  color: ${({ theme }) => theme.colors.white};
+  padding: 14px 64px;
+  border: none;
   border-radius: 16px;
-  display: grid;
-  grid-template-columns: 0fr 1fr;
-  column-gap: 8px;
-`
+  cursor: pointer;
 
-export const ChatContent = styled.div`
-  display: grid;
-  grid-template-columns: 1fr 0fr;
-  gap: 4px;
-`
-
-export const ChatTime = styled.div`
-  font-size: ${({ theme }) => theme.fontSizes.s};
-  font-weight: ${({ theme }) => theme.fontWeights.medium};
-  color: ${({ theme }) => theme.colors.grey};
-`
-
-export const ChatName = styled.div`
-  font-weight: ${({ theme }) => theme.fontWeights.medium};
-`
-
-export const ChatMessage = styled.div`
-  color: ${({ theme }) => theme.colors.white};
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-`
-
-export const ChatUnread = styled.div`
-  justify-self: flex-end;
-  padding: 0 7px;
-  background-color: ${({ theme }) => theme.colors.blue};
-  font-size: ${({ theme }) => theme.fontSizes.xs};
-  font-weight: ${({ theme }) => theme.fontWeights.bold};
-  color: ${({ theme }) => theme.colors.white};
-  height: 20px;
-  min-width: 20px;
-  width: fit-content;
-  border-radius: 60px;
+  &:hover,
+  &:focus {
+    &::before {
+      outline: 1px solid ${({ theme }) => theme.colors.white};
+    }
+  }
 `

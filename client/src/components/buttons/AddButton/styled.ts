@@ -7,14 +7,22 @@ interface AddButtonProps {
 }
 
 export const AddButton = styled.button<AddButtonProps>`
+  ${backgroundBlur}
+
   width: ${({ width }) => width};
   height: ${({ height }) => height};
   border: none;
   border-radius: 14px;
   display: grid;
   place-items: center;
+  cursor: pointer;
 
-  ${backgroundBlur}
+  &:hover,
+  &:focus {
+    &::before {
+      outline: 1px solid ${({ theme }) => theme.colors.white};
+    }
+  }
 `
 
 export const Icon = styled.img`

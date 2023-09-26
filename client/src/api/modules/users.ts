@@ -1,15 +1,22 @@
 import { request } from '../http-client'
-import { type CreateUserRequest } from '@/api/data-contracts'
+import { type CreateUserRequest, type GetChatsParams } from '@/api/data-contracts'
 
 export const usersApi = () => {
   const createUser = (data: CreateUserRequest) =>
     request({
       method: 'POST',
-      url: '/registration',
+      url: '/users',
       data
     })
 
+  const getChats = (params: GetChatsParams) =>
+    request({
+      method: 'GET',
+      url: `/users/${params.userId}/chats`
+    })
+
   return {
-    createUser
+    createUser,
+    getChats
   }
 }

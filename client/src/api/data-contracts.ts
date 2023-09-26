@@ -1,3 +1,13 @@
 export interface CreateUserRequest {
-  phoneNumber: string
+  username: string
+}
+
+export interface GetChatsParams {
+  userId: string
+}
+
+export interface Chat {
+  avatar: string
+  name: string
+  messages: any[]
 }

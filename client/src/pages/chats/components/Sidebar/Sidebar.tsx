@@ -3,10 +3,15 @@ import { AddButton } from '@/components/buttons/AddButton'
 import { Avatar } from '@/components/Avatar'
 import { WidgetsGroup } from '@/components/WidgetsGroup'
 import { ChatsField } from '../ChatsField'
+import { type Chat } from '@/api/data-contracts'
 
 import * as Styled from './styled'
 
-export function Sidebar() {
+interface Props {
+  chats: Chat[]
+}
+
+export function Sidebar({ chats }: Props) {
   return (
     <Styled.Sidebar>
       <Styled.SidebarTop>
@@ -18,7 +23,7 @@ export function Sidebar() {
         <WidgetsGroup name="Boards" items={[]} />
         <WidgetsGroup name="Folders" items={[]} />
       </Styled.SidebarAside>
-      <ChatsField items={[]} />
+      <ChatsField items={chats} />
     </Styled.Sidebar>
   )
 }

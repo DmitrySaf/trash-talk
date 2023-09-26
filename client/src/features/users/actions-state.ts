@@ -3,7 +3,7 @@ import { createUser as createUserReq } from './data-provider'
 import { type CreateUserRequest } from '@/api/data-contracts'
 
 interface UseUsersActions {
-  readonly creatingUser: boolean
+  creatingUser: boolean
   createUser: (data: CreateUserRequest) => void
 }
 

@@ -1,5 +1,5 @@
-import React from 'react'
-import { Avatar } from '@/components/Avatar'
+import { Chat as ChatComponent } from '../Chat'
+import { type Chat } from '@/api/data-contracts'
 
 import * as Styled from './styled'
 
@@ -8,30 +8,39 @@ import * as Styled from './styled'
 // }
 
 interface Props {
-  items: any[]
+  items: Chat[]
+}
+
+const renderItems = (items: Chat[]) => {
+  return items.map((item, i) => (
+    <ChatComponent
+      key={i}
+      avatar="/"
+      name={item.name}
+      message={item.messages.at(-1)}
+      time="12:12"
+      unreadMessages={3}
+    />
+  ))
 }
 
 export function ChatsField({ items }: Props) {
-  // const renderItems = () => {
-  //   return items.map((item, i) => (
-  //     <Styled.Chat key={i}>
-
-  //     </Styled.Chat>
-  //   ))
-  // }
-
   return (
     <Styled.ChatsField>
       <Styled.Title>Chats</Styled.Title>
-      <Styled.Chat>
-        <Avatar size="m" />
-        <Styled.ChatContent>
-          <Styled.ChatName>Tsumi Kumi</Styled.ChatName>
-          <Styled.ChatTime>12:12</Styled.ChatTime>
-          <Styled.ChatMessage>Hello! I like eat pasta, and u?asdasdas</Styled.ChatMessage>
-          <Styled.ChatUnread>12</Styled.ChatUnread>
-        </Styled.ChatContent>
-      </Styled.Chat>
+      {items.length > 0 ? (
+        renderItems(items)
+      ) : (
+        <Styled.Empty>
+          <Styled.EmptyText>
+            It&apos;s empty... <br />
+            but not for long!
+          </Styled.EmptyText>
+          <Styled.EmptyButton>
+            <span>Add chat</span>
+          </Styled.EmptyButton>
+        </Styled.Empty>
+      )}
     </Styled.ChatsField>
   )
 }
