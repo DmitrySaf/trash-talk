@@ -1,6 +1,7 @@
 
 import { Schema, model, type InferSchemaType } from 'mongoose';
 
+// TODO: заменить на userID
 export const ChatSchema = new Schema(
   {
     friendUsername: {

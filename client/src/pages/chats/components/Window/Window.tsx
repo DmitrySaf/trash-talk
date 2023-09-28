@@ -1,4 +1,6 @@
-import React from 'react'
+import React, { useEffect, useState, useRef } from 'react'
+import { useParams } from 'react-router-dom'
+import { v4 as uuidv4 } from 'uuid'
 
 import editIcon from './assets/edit.svg'
 import moreIcon from './assets/more-horizontal.svg'
@@ -8,6 +10,55 @@ import sendIcon from './assets/send.svg'
 import * as Styled from './styled'
 
 export function Window() {
+  const [messageText, setMessageText] = useState('')
+  const [messages, setMessages] = useState([])
+  const { username } = useParams()
+  const socket = useRef()
+  const contentEditable = useRef()
+
+  function sendMessage() {
+    const message = {
+      username,
+      message: messageText,
+      id: uuidv4(),
+      event: 'message'
+    }
+    socket.current.send(JSON.stringify(message))
+    setMessageText('')
+  }
+
+  useEffect(() => {
+    socket.current = new WebSocket('ws://localhost:5000/api')
+
+    socket.current.onopen = () => {
+      console.log('test')
+      const message = {
+        event: 'connection',
+        id: uuidv4(),
+        username
+      }
+
+      socket.current.send(JSON.stringify(message))
+    }
+    socket.current.onmessage = (event) => {
+      const message = JSON.parse(event.data)
+
+      setMessages((prev) => [message, ...prev])
+    }
+
+    socket.current.onclose = () => {
+      console.log('Socket закрыт')
+    }
+
+    socket.current.onerror = () => {
+      console.log('Socket ошибка')
+    }
+  }, [])
+
+  function isSelf(msg: any) {
+    return msg.username === username
+  }
+
   return (
     <Styled.Window>
       <Styled.Header>
@@ -26,14 +77,24 @@ export function Window() {
           <img src={searchIcon} />
         </Styled.Right>
       </Styled.Header>
-      <div></div>
+      <Styled.MessagesWindow>
+        {messages.map((msg, i) => {
+          if (msg.message !== '' && msg.message !== null && msg.message !== undefined) {
+            return (
+              <Styled.MessageItem self={isSelf(msg)} key={msg.id}>
+                {msg.message}
+              </Styled.MessageItem>
+            )
+          }
+        })}
+      </Styled.MessagesWindow>
       <Styled.Footer>
         <Styled.Message
-          role="textbox"
-          contentEditable
-          placeholder="Написать какой же он сын шалавы"
+          innerRef={contentEditable}
+          html={messageText}
+          onChange={(e) => setMessageText(e.target.value)}
         />
-        <Styled.SendButton src={sendIcon} />
+        <Styled.SendButton src={sendIcon} onClick={sendMessage} role="button" />
       </Styled.Footer>
     </Styled.Window>
   )

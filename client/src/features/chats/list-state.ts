@@ -23,7 +23,7 @@ export const useChats = ({ username }: UseUsersActionsOptions): UseUsersActions 
     }
 
     const recievedChats = await loadChatsReq({ username })
-    console.log(recievedChats)
+
     setChats(recievedChats)
     setLoadingChats(false)
   }

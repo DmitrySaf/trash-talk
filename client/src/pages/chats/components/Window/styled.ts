@@ -1,4 +1,5 @@
 import styled from 'styled-components'
+import ContentEditable from 'react-contenteditable'
 import { backgroundBlur } from '@/assets/styles/mixins/background-blur'
 
 export const Window = styled.div`
@@ -80,7 +81,29 @@ export const Footer = styled.div`
   padding: 8px;
 `
 
-export const Message = styled.span`
+export const MessagesWindow = styled.div`
+  display: flex;
+  flex-direction: column-reverse;
+  justify-content: flex-end;
+  gap: 4px;
+`
+
+type Props = {
+  self: boolean
+}
+
+export const MessageItem = styled.div<Props>`
+  padding: 4px 8px;
+  background-color: white;
+  width: max-content;
+  max-width: 75%;
+  border-radius: 16px;
+  color: black;
+
+  ${({ self }) => (self ? 'align-self: flex-end;' : 'align-self: flex-start;')}
+`
+
+export const Message = styled(ContentEditable)`
   display: block;
   overflow: hidden;
   max-width: 100%;
