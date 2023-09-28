@@ -3,19 +3,19 @@ import { Schema, model, type InferSchemaType } from 'mongoose';
 
 export const ChatSchema = new Schema(
   {
-    avatar: {
-      type: String,
-      required: true
+    friendUsername: {
+      type: String
     },
-    name: {
-      type: String,
-      required: true
+    friendAvatar: {
+      type: String
     },
-    messages: {
-      type: Array,
-      required: true
+    friendStatus: {
+      type: String
+    },
+    messagesId: {
+      type: Schema.ObjectId
     }
-  },
+  }
 );
 
 export type Chat = InferSchemaType<typeof ChatSchema>;

@@ -3,11 +3,16 @@ export interface CreateUserRequest {
 }
 
 export interface GetChatsParams {
-  userId: string
+  username: string
 }
 
 export interface Chat {
-  avatar: string
-  name: string
+  // avatar: string
+  friendUsername: string
   messages: any[]
+}
+
+export interface CreateChatRequest {
+  friendUsername: string
+  myUsername: string
 }

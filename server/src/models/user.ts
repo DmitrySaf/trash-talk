@@ -6,16 +6,20 @@ import { ChatSchema } from './chat';
 
 const UserSchema = new Schema(
   {
-    name: {
-      type: String,
-      required: true
+    avatar: {
+      type: String
     },
-    phoneNumber: {
-      
+    status: {
+      type: String
+    },
+    username: {
+      type: String
     },
     boards: [BoardSchema],
     folders: [FolderSchema],
-    chats: [ChatSchema]
+    chats: {
+      type: Array
+    }
   },
 );
 

@@ -9,8 +9,8 @@ import backgroundImage from './assets/background.jpg'
 import * as Styled from './styled'
 
 export function Chats() {
-  const { userId } = useParams()
-  const { chats, loadingChats, loadChats } = useChats({ userId })
+  const { username } = useParams()
+  const { chats, loadingChats, loadChats } = useChats({ username })
 
   useEffect(() => {
     loadChats()

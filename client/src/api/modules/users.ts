@@ -12,7 +12,7 @@ export const usersApi = () => {
   const getChats = (params: GetChatsParams) =>
     request({
       method: 'GET',
-      url: `/users/${params.userId}/chats`
+      url: `/users/${params.username}/chats`
     })
 
   return {

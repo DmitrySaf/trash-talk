@@ -9,20 +9,21 @@ interface UseUsersActions {
 }
 
 interface UseUsersActionsOptions {
-  userId: string | undefined
+  username: string | undefined
 }
 
-export const useChats = ({ userId }: UseUsersActionsOptions): UseUsersActions => {
+export const useChats = ({ username }: UseUsersActionsOptions): UseUsersActions => {
   const [chats, setChats] = useState<Chat[]>([])
   const [loadingChats, setLoadingChats] = useState(false)
 
   const loadChats = async (): Promise<void> => {
     setLoadingChats(true)
-    if (userId === undefined) {
-      return
+    if (username === undefined) {
+      throw new Error('username is undefined')
     }
 
-    const recievedChats = await loadChatsReq({ userId })
+    const recievedChats = await loadChatsReq({ username })
+    console.log(recievedChats)
     setChats(recievedChats)
     setLoadingChats(false)
   }

@@ -11,7 +11,7 @@ import { Registration } from '@/pages/registration/views/Registration'
 
 const router = createBrowserRouter([
   {
-    path: '/users/:userId',
+    path: '/users/:username',
     element: <Chats />
   },
   {
