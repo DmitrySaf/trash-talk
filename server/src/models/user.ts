@@ -1,27 +1,39 @@
+import { Schema, model, type InferSchemaType, Document } from 'mongoose';
+import { type ModelWithMongoDocument } from './types'
 
-import { Schema, model, type InferSchemaType } from 'mongoose';
-import { BoardSchema } from './board';
-import { FolderSchema } from './folder';
-import { ChatSchema } from './chat';
+export enum UserStatus {
+  ONLINE = 'ONLINE',
+  BRB = 'BERIGHTBACK',
+  OFFLINE = 'OFFLINE'
+}
 
 const UserSchema = new Schema(
   {
-    avatar: {
-      type: String
-    },
+    avatar: String,
     status: {
-      type: String
+      type: String,
+      enum: UserStatus,
+      default: UserStatus.OFFLINE
     },
     username: {
-      type: String
+      type: String,
+      unique: true,
+      required: true
     },
-    boards: [BoardSchema],
-    folders: [FolderSchema],
+    boards: {
+      type: [Schema.ObjectId],
+      default: []
+    },
+    folders: {
+      type: [Schema.ObjectId],
+      default: []
+    },
     chats: {
-      type: Array
+      type: [Schema.ObjectId],
+      default: []
     }
   },
 );
 
-export type User = InferSchemaType<typeof UserSchema>;
+export type User = ModelWithMongoDocument<typeof UserSchema>;
 export const User = model('User', UserSchema);

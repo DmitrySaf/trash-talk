@@ -1,5 +1,6 @@
 
-import { Schema, model, type InferSchemaType } from 'mongoose';
+import { Schema, model } from 'mongoose';
+import { type ModelWithMongoDocument } from './types'
 
 export const FolderSchema = new Schema(
   {
@@ -14,5 +15,5 @@ export const FolderSchema = new Schema(
   },
 );
 
-export type Folder = InferSchemaType<typeof FolderSchema>;
+export type Folder = ModelWithMongoDocument<typeof FolderSchema>;
 export const Folder = model('Folder', FolderSchema);

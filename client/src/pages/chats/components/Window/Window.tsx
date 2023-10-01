@@ -17,11 +17,14 @@ export function Window() {
   const contentEditable = useRef()
 
   function sendMessage() {
+    const date = new Date().toISOString()
     const message = {
+      date,
       username,
       message: messageText,
       id: uuidv4(),
-      event: 'message'
+      event: 'message',
+      chatId: '6519c6e9b9c64235f8226828'
     }
     socket.current.send(JSON.stringify(message))
     setMessageText('')
@@ -31,19 +34,21 @@ export function Window() {
     socket.current = new WebSocket('ws://localhost:5000/api')
 
     socket.current.onopen = () => {
-      console.log('test')
+      console.log('open')
       const message = {
         event: 'connection',
         id: uuidv4(),
-        username
+        username,
+        chatId: '6519c6e9b9c64235f8226828'
       }
 
       socket.current.send(JSON.stringify(message))
     }
     socket.current.onmessage = (event) => {
-      const message = JSON.parse(event.data)
+      console.log('message')
+      const messages = JSON.parse(event.data)
 
-      setMessages((prev) => [message, ...prev])
+      setMessages(messages)
     }
 
     socket.current.onclose = () => {
@@ -79,10 +84,11 @@ export function Window() {
       </Styled.Header>
       <Styled.MessagesWindow>
         {messages.map((msg, i) => {
-          if (msg.message !== '' && msg.message !== null && msg.message !== undefined) {
+          console.log(msg)
+          if (msg.text !== '' && msg.text !== null && msg.text !== undefined) {
             return (
-              <Styled.MessageItem self={isSelf(msg)} key={msg.id}>
-                {msg.message}
+              <Styled.MessageItem $self={isSelf(msg)} key={msg._id}>
+                {msg.text}
               </Styled.MessageItem>
             )
           }

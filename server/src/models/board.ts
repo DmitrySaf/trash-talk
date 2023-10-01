@@ -1,4 +1,5 @@
-import { Schema, model, type InferSchemaType } from 'mongoose';
+import { Schema, model } from 'mongoose';
+import { type ModelWithMongoDocument } from './types'
 
 export const BoardSchema = new Schema(
   {
@@ -13,5 +14,5 @@ export const BoardSchema = new Schema(
   },
 );
 
-export type Board = InferSchemaType<typeof BoardSchema>;
+export type Board = ModelWithMongoDocument<typeof BoardSchema>;
 export const Board = model('Board', BoardSchema);

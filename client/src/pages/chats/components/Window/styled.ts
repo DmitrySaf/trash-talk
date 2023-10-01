@@ -83,13 +83,14 @@ export const Footer = styled.div`
 
 export const MessagesWindow = styled.div`
   display: flex;
-  flex-direction: column-reverse;
-  justify-content: flex-end;
+  flex-direction: column;
+  justify-content: flex-start;
   gap: 4px;
+  padding: 8px;
 `
 
 type Props = {
-  self: boolean
+  $self: boolean
 }
 
 export const MessageItem = styled.div<Props>`
@@ -100,7 +101,7 @@ export const MessageItem = styled.div<Props>`
   border-radius: 16px;
   color: black;
 
-  ${({ self }) => (self ? 'align-self: flex-end;' : 'align-self: flex-start;')}
+  ${({ $self }) => ($self ? 'align-self: flex-end;' : 'align-self: flex-start;')}
 `
 
 export const Message = styled(ContentEditable)`

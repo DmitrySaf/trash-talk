@@ -7,8 +7,10 @@ export interface GetChatsParams {
 }
 
 export interface Chat {
-  // avatar: string
-  friendUsername: string
+  friend: {
+    username: string
+    status: string
+  }
   messages: any[]
 }
 

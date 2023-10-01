@@ -15,16 +15,20 @@ interface Props {
 }
 
 const renderItems = (items: Chat[]) => {
-  return items.map((item, i) => (
-    <ChatComponent
-      key={i}
-      avatar="/"
-      name={item.friendUsername}
-      message={item.messages.at(-1)}
-      time="12:12"
-      unreadMessages={item.messages.length}
-    />
-  ))
+  return items.map((item, i) => {
+    const message = item.messages.length > 0 ? item.messages.at(-1).text : ''
+
+    return (
+      <ChatComponent
+        key={i}
+        avatar="/"
+        name={item.friend.username}
+        message={message}
+        time="12:12"
+        unreadMessages={item.messages.length}
+      />
+    )
+  })
 }
 
 export function ChatsField({ items }: Props) {

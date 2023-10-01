@@ -1,23 +1,19 @@
 
-import { Schema, model, type InferSchemaType } from 'mongoose';
+import { Schema, model } from 'mongoose';
+import { type ModelWithMongoDocument } from './types'
 
-// TODO: заменить на userID
 export const ChatSchema = new Schema(
   {
-    friendUsername: {
-      type: String
+    friendId: {
+      type: Schema.ObjectId,
+      required: true
     },
-    friendAvatar: {
-      type: String
-    },
-    friendStatus: {
-      type: String
-    },
-    messagesId: {
-      type: Schema.ObjectId
+    messagesIds: {
+      type: [Schema.ObjectId],
+      default: []
     }
   }
 );
 
-export type Chat = InferSchemaType<typeof ChatSchema>;
+export type Chat = ModelWithMongoDocument<typeof ChatSchema>;
 export const Chat = model('Chat', ChatSchema);
